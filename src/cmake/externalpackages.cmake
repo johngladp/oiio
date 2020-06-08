@@ -203,7 +203,7 @@ if (CMAKE_COMPILER_IS_CLANG AND OPENEXR_VERSION VERSION_LESS 2.3)
     # clang C++ >= 11 doesn't like 'register' keyword in old exr headers
     add_compile_options (-Wno-deprecated-register)
 endif ()
-if (MSVC AND NOT LINKSTATIC)
+if (MSVC)# AND NOT LINKSTATIC) static linking of openexr doesn't work on windows builds.
     add_definitions (-DOPENEXR_DLL) # Is this needed for new versions?
 endif ()
 
