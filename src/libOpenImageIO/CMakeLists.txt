@@ -121,8 +121,8 @@ source_group ("libtexture" REGULAR_EXPRESSION ".+/libtexture/.+")
 
 target_include_directories (OpenImageIO
                             PUBLIC
-                                ${CMAKE_INSTALL_FULL_INCLUDEDIR}
-                                ${ILMBASE_INCLUDES}
+                                "$<BUILD_INTERFACE:${CMAKE_INSTALL_FULL_INCLUDEDIR}>"
+                                "$<INSTALL_INTERFACE:$<INSTALL_PREFIX>/${CMAKE_INSTALL_INCLUDEDIR}>"
                                 ${OpenCV_INCLUDES}
                             PRIVATE
                                 ${ROBINMAP_INCLUDES}
@@ -135,8 +135,7 @@ endif ()
 
 target_link_libraries (OpenImageIO
         PUBLIC
-            ${ILMBASE_LIBRARIES}
-            ${OPENEXR_LIBRARIES}
+            OpenEXR::IlmImfUtil
             ${OpenCV_LIBRARIES}
             ${GCC_ATOMIC_LIBRARIES}
         PRIVATE

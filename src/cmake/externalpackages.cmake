@@ -195,10 +195,11 @@ checked_find_package (ZLIB REQUIRED)  # Needed by several packages
 checked_find_package (TIFF 3.0 REQUIRED)
 
 # IlmBase & OpenEXR
-checked_find_package (OpenEXR 2.0 REQUIRED)
+checked_find_package (IlmBase REQUIRED CONFIG)
+checked_find_package (OpenEXR 2.0 REQUIRED CONFIG)
 # We use Imath so commonly, may as well include it everywhere.
-include_directories ("${OPENEXR_INCLUDES}" "${ILMBASE_INCLUDES}"
-                     "${ILMBASE_INCLUDES}/OpenEXR")
+#include_directories ("${OPENEXR_INCLUDES}" "${ILMBASE_INCLUDES}"
+#                     "${ILMBASE_INCLUDES}/OpenEXR")
 if (CMAKE_COMPILER_IS_CLANG AND OPENEXR_VERSION VERSION_LESS 2.3)
     # clang C++ >= 11 doesn't like 'register' keyword in old exr headers
     add_compile_options (-Wno-deprecated-register)

@@ -68,6 +68,7 @@ macro (add_oiio_plugin)
                                         OpenImageIO_EXPORTS)
             target_include_directories (${_plugin_name} PRIVATE ${_plugin_INCLUDE_DIRS})
             target_link_libraries (${_plugin_name} PUBLIC OpenImageIO
+                                                          OpenEXR::IlmImfUtil
                                                    PRIVATE ${_plugin_LINK_LIBRARIES})
             set_target_properties (${_plugin_name} PROPERTIES PREFIX "" FOLDER "Plugins")
             install_targets (${_plugin_name})
