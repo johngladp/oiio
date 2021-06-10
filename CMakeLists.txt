@@ -257,10 +257,22 @@ write_basic_package_version_file (
 # through the macro install_target().
 export (EXPORT OIIO_EXPORTED_TARGETS FILE "${CMAKE_BINARY_DIR}/${OIIO_TARGETS_EXPORT_NAME}")
 
+# To prevent hardcoded absolute paths from appearing in the generated
+# Config.cmake we follow the guidelines presented here:
+# https://cmake.org/cmake/help/latest/module/CMakePackageConfigHelpers.html
+# Note: The find_dependency HINTS in our Config.cmake are fairly benign so
+#        we leave these as hardcoded absolute paths.
+
+# The package relative include directory
+set (OIIO_INCLUDE_INSTALL_DIR include/)
+# The package relative library directory
+set (OIIO_LIB_INSTALL_DIR lib/)
+
 # generate the config file from the template in the binary dir
 configure_package_config_file ("${PROJECT_SOURCE_DIR}/src/cmake/Config.cmake.in"
         "${OIIO_PROJECT_CONFIG}"
-        INSTALL_DESTINATION "${OIIO_CONFIG_INSTALL_DIR}")
+        INSTALL_DESTINATION "${OIIO_CONFIG_INSTALL_DIR}"
+        PATH_VARS OIIO_INCLUDE_INSTALL_DIR OIIO_LIB_INSTALL_DIR)
 
 # generate the config file from the template in the binary dir
 install (FILES "${OIIO_PROJECT_CONFIG}" "${OIIO_VERSION_CONFIG}"
