@@ -122,7 +122,6 @@ source_group ("libtexture" REGULAR_EXPRESSION ".+/libtexture/.+")
 target_include_directories (OpenImageIO
                             PUBLIC
                                 $<INSTALL_INTERFACE:include>
-                                ${IMATH_INCLUDES} ${OPENEXR_INCLUDES}
                                 ${OpenCV_INCLUDES}
                             PRIVATE
                                 ${ROBINMAP_INCLUDES}

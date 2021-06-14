@@ -9,7 +9,6 @@ add_library (OpenImageIO_Util ${libOpenImageIO_Util_srcs})
 target_include_directories (OpenImageIO_Util
         PUBLIC
             $<INSTALL_INTERFACE:include>
-            ${IMATH_INCLUDES} ${OPENEXR_INCLUDES}
         )
 target_link_libraries (OpenImageIO_Util
         PUBLIC
